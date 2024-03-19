@@ -4,6 +4,15 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin: 0 auto;
+}
+
 h1 {
   text-align: center;
 }
