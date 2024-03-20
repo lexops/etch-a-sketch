@@ -31,6 +31,8 @@ function renderGrid(gridSize) {
 
   squares.forEach(square => {
     square.addEventListener("mouseover", () => {
+      square.style.borderColor = "rgba(255, 225, 255, 0)"
+
       if (square.darkness) {
         square.darkness += 0.1
       } else {
