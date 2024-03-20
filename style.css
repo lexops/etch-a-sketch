@@ -4,26 +4,33 @@
   box-sizing: border-box;
 }
 
-body {
+.container {
   display: flex;
   flex-direction: column;
 }
 
-button {
-  margin: 0 auto;
-}
-
 h1 {
   text-align: center;
+  margin: 10px auto;
 }
 
-.container {
+button {
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.grid {
   border: .5px solid;
   width: 500px;
   height: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  border-radius: 5px;
+}
+
+.grid:hover {
+  cursor: crosshair;
 }
 
 .row {
@@ -33,9 +40,6 @@ h1 {
 
 .square {
   flex: 1 1 0;
-  border: .5px solid;
+  border: .5px dashed rgba(0, 0, 0, 0.2);
 }
 
-.active {
-  background-color: greenyellow;
-}

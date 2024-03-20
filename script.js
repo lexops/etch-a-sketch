@@ -1,10 +1,23 @@
+function getRandomColor() {
+  const r = Math.floor(Math.random() * 256)
+  const g = Math.floor(Math.random() * 256)
+  const b = Math.floor(Math.random() * 256)
+
+  return `rgb(${r}, ${g}, ${b})`
+
+}
+
 const container = document.querySelector(".container")
+
+const grid = document.createElement("div")
+grid.classList.add("grid")
+container.appendChild(grid)
 
 function renderGrid(gridSize) {
   for (let i = 0; i < gridSize; i++) {
     const row = document.createElement("div")
     row.classList.add("row")
-    container.appendChild(row)
+    grid.appendChild(row)
     for (let j = 0; j < gridSize; j++) {
       const square = document.createElement("div")
       square.classList.add("square")
@@ -12,11 +25,26 @@ function renderGrid(gridSize) {
     }
   }
 
+  let selectedRainbow = true
+
   const squares = document.querySelectorAll(".square")
 
   squares.forEach(square => {
     square.addEventListener("mouseover", () => {
-      square.classList.add("active")
+      if (square.darkness) {
+        square.darkness += 0.1
+      } else {
+        square.darkness = 0.1
+      }
+
+      square.style.opacity = square.darkness
+
+      if (selectedRainbow) {
+        square.style.backgroundColor = getRandomColor()
+      } else {
+        square.style.backgroundColor = "black"
+      }
+
     })
   })
 }
@@ -25,7 +53,7 @@ renderGrid(32)
 
 function removeGrid() {
   rows = document.querySelectorAll(".row")
-  rows.forEach(row => container.removeChild(row))
+  rows.forEach(row => grid.removeChild(row))
 }
 
 const gridSizeBtn = document.createElement("button")
@@ -38,9 +66,5 @@ gridSizeBtn.addEventListener("click", () => {
   renderGrid(gridSize)
 })
 
-const body = document.querySelector("body")
 const h1 = document.querySelector("h1")
-body.insertBefore(gridSizeBtn, container)
-
-
-
+container.insertBefore(gridSizeBtn, grid)
